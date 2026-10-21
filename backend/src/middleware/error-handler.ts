@@ -1,4 +1,4 @@
-import { ErrorRequestHandler } from "express";
+import type { ErrorRequestHandler } from "express";
 
 const errorHandler: ErrorRequestHandler = (err, _req, res, next) => {
   if (res.headersSent) {

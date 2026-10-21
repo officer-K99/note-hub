@@ -1,7 +1,11 @@
-import type { Request, Response } from "express";
+import type { Request, Response, NextFunction } from "express";
 import Note from "../models/Note";
 
-const getAllNotes = async (_req: Request, res: Response): Promise<void> => {
+const getAllNotes = async (
+  _req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
     const notes = await Note.find();
 
@@ -10,13 +14,15 @@ const getAllNotes = async (_req: Request, res: Response): Promise<void> => {
       data: notes,
     });
   } catch (err) {
-    res.status(500).json({
-      message: "could not fetch any notes",
-    });
+    next(err);
   }
 };
 
-const createNote = async (req: Request, res: Response): Promise<void> => {
+const createNote = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
     const reqBody = req.body;
     console.log(reqBody);
@@ -27,13 +33,15 @@ const createNote = async (req: Request, res: Response): Promise<void> => {
       data: createdNote,
     });
   } catch (err) {
-    res.status(500).json({
-      message: "could not create note",
-    });
+    next(err);
   }
 };
 
-const getNote = async (req: Request, res: Response): Promise<void> => {
+const getNote = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
     const id = req.params.id;
     if (!id) {
@@ -51,12 +59,14 @@ const getNote = async (req: Request, res: Response): Promise<void> => {
       data: note,
     });
   } catch (err) {
-    res.status(500).json({
-      message: "could not find note",
-    });
+    next(err);
   }
 };
-const updateNote = async (req: Request, res: Response): Promise<void> => {
+const updateNote = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
     const id = req.params.id;
     const reqBody = req.body;
@@ -74,13 +84,15 @@ const updateNote = async (req: Request, res: Response): Promise<void> => {
       data: updatedNote,
     });
   } catch (err) {
-    res.status(500).json({
-      message: "could not update note",
-    });
+    next(err);
   }
 };
 
-const deleteNote = async (req: Request, res: Response): Promise<void> => {
+const deleteNote = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
     const id = req.params.id;
     if (!id) {
@@ -97,9 +109,7 @@ const deleteNote = async (req: Request, res: Response): Promise<void> => {
       message: "note deleted successfully",
     });
   } catch (err) {
-    res.status(500).json({
-      message: "could not delete note",
-    });
+    next(err);
   }
 };
 
