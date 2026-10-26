@@ -18,7 +18,7 @@ const CreateNotePage = () => {
   });
 
   const handleCreateNote = async (values: CreateNoteInput) => {
-    const sendData = await createNoteMutation.mutateAsync(values);
+    await createNoteMutation.mutateAsync(values);
   };
 
   return (

@@ -4,6 +4,8 @@ import Error from "../components/error";
 import { useQuery } from "@tanstack/react-query";
 import { getNotes } from "../api/notes";
 import { FileText } from "lucide-react";
+import deleteNote from "../api/deleteNote";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const HomePage = () => {
   const {
@@ -14,6 +16,24 @@ const HomePage = () => {
     queryKey: ["Notes"],
     queryFn: getNotes,
   });
+
+  const queryClient = useQueryClient();
+  const {
+    mutateAsync,
+    isPending: mutationIsPending,
+    isError: mutationIsError,
+  } = useMutation({
+    mutationFn: deleteNote,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ["Notes"],
+      });
+    },
+  });
+
+  const deleteNoteHandler = async (id: string) => {
+    await mutateAsync(id);
+  };
 
   return (
     <div className="mx-auto max-w-7xl px-6 py-10 sm:px-8">
@@ -32,9 +52,9 @@ const HomePage = () => {
         </p>
       </header>
 
-      {isPending ? (
+      {isPending || mutationIsPending ? (
         <Loading />
-      ) : isError ? (
+      ) : isError || mutationIsError ? (
         <Error message="Could not fetch notes" />
       ) : notes.length === 0 ? (
         <div className="flex min-h-48 max-w-md flex-col items-center justify-center rounded-2xl border border-dashed border-white/10 bg-[#111827]/60 px-6 text-center">
@@ -50,7 +70,7 @@ const HomePage = () => {
           className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3"
         >
           {notes?.map((note) => (
-            <NoteCard key={note._id} data={note} />
+            <NoteCard key={note._id} data={note} onDelete={deleteNoteHandler} />
           ))}
         </section>
       )}

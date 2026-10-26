@@ -29,7 +29,7 @@ const CreateNoteForm = ({ onSubmit }: CreateNoteFormProps) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-full max-w-2xl space-y-6 rounded-2xl border border-white/[0.08] bg-[#111827] p-6 sm:p-8"
+      className="w-full max-w-2xl mt-2.5 space-y-6 rounded-2xl border border-white/[0.08] bg-[#111827] p-6 sm:p-8"
     >
       <div>
         <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-violet-500/10 text-violet-400">
@@ -93,7 +93,7 @@ const CreateNoteForm = ({ onSubmit }: CreateNoteFormProps) => {
       <button
         type="submit"
         disabled={isSubmitting || isFormEmpty}
-        className="inline-flex items-center cursor-pointer justify-center gap-2 rounded-xl bg-violet-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-violet-500 disabled:cursor-not-allowed disabled:opacity-60"
+        className={`inline-flex items-center cursor-pointer justify-center gap-2 rounded-xl ${isSubmitting || isFormEmpty ? "bg-gray-500/30" : "bg-violet-600"} px-5 py-3 text-sm font-semibold text-white transition  disabled:cursor-not-allowed `}
       >
         <Plus size={18} />
         {isSubmitting ? "Creating note..." : "Create note"}
