@@ -1,4 +1,5 @@
 import express from "express";
+import { requireAuth } from "../middleware/auth";
 import {
   getAllNotes,
   getNote,
@@ -7,16 +8,18 @@ import {
   deleteNote,
 } from "../controllers/notes.controllers";
 
-const notesRouter = express.Router();
+const router = express.Router();
 
-notesRouter.get("/", getAllNotes);
+router.use(requireAuth);
 
-notesRouter.post("/", createNote);
+router.get("/", getAllNotes);
 
-notesRouter.get("/:id", getNote);
+router.post("/", createNote);
 
-notesRouter.put("/:id", updateNote);
+router.get("/:id", getNote);
 
-notesRouter.delete("/:id", deleteNote);
+router.put("/:id", updateNote);
 
-export default notesRouter;
+router.delete("/:id", deleteNote);
+
+export default router;

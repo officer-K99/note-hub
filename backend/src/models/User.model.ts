@@ -3,14 +3,14 @@ import { Schema, model, InferSchemaType } from "mongoose";
 const userSchema = new Schema(
   {
     email: {
-      require: true,
+      required: true,
       type: String,
       unique: true,
       lowercase: true,
       trim: true,
     },
     passwordHash: {
-      require: true,
+      required: true,
       type: String,
       select: false,
     },
