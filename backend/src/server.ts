@@ -1,13 +1,12 @@
 import app from "./app";
-import dotenv from "dotenv";
+import { env } from "./configs/env";
 import connectToDataBase from "./configs/db";
 
-dotenv.config();
-const PORT = Number(process.env.PORT) || 5000;
+const PORT = Number(env.PORT) || 5000;
 
 const startServer = async (): Promise<void> => {
   try {
-    const dbUri = process.env.MONGODB_URI;
+    const dbUri = env.MONGODB_URI;
     if (!dbUri) {
       throw new Error("could not found db connection in env");
     }
