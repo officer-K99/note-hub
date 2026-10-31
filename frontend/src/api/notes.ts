@@ -1,10 +1,8 @@
 import type { NotesType } from "../types";
-const API_BASE_URL = import.meta.env.VITE_BASE_URL;
+import { apiFetch } from "./client";
 
 const getNotes = async (): Promise<NotesType[]> => {
-  const fetchedNotes = await fetch(`${API_BASE_URL}/api/notes`, {
-    credentials: "include",
-  });
+  const fetchedNotes = await apiFetch("/api/notes");
   if (!fetchedNotes.ok) {
     throw new Error("could not fetch notes");
   }

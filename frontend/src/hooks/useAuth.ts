@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { getMe, login, register } from "../api/auth";
+import { getMe, login, register, logout } from "../api/auth";
 import { toast } from "sonner";
 
 export const useMe = () =>
@@ -29,6 +29,18 @@ export const useRegister = () => {
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["me"] });
       toast.success("Account created");
+    },
+  });
+};
+
+export const useLogout = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: logout,
+    onSuccess: () => {
+      queryClient.removeQueries({ predicate: (q) => q.queryKey[0] !== "me" });
+      queryClient.setQueryData(["me"], null);
+      toast.success("Logged out");
     },
   });
 };

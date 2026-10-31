@@ -1,14 +1,11 @@
 import type { CreateNoteInput } from "../types/noteSchema";
 import type { NotesType } from "../types/index";
-const API_URL = import.meta.env.VITE_BASE_URL;
+import { apiFetch } from "./client";
 
 const createNote = async (input: CreateNoteInput): Promise<NotesType> => {
-  const response = await fetch(`${API_URL}/api/notes`, {
+  const response = await apiFetch("/api/notes", {
     method: "POST",
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(input),
   });
   if (!response.ok) {

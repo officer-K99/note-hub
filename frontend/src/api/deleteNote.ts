@@ -1,13 +1,7 @@
-const API_URL = import.meta.env.VITE_BASE_URL;
+import { apiFetch } from "./client";
 
 const deleteNote = async (id: string): Promise<void> => {
-  const response = await fetch(`${API_URL}/api/notes/${id}`, {
-    method: "DELETE",
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const response = await apiFetch(`/api/notes/${id}`, { method: "DELETE" });
 
   if (!response.ok) {
     throw new Error("could not delete the note");
