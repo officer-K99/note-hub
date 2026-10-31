@@ -35,7 +35,7 @@ export default function NotePage() {
 
   if (isPending) {
     return (
-      <div className="flex min-h-[60vh] flex-col items-center justify-center gap-4">
+      <div className="flex min-h-[60vh] flex-col items-center justify-center gap-4 px-4">
         <Loading />
       </div>
     );
@@ -50,8 +50,8 @@ export default function NotePage() {
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:py-12">
-      <div className="mx-auto mb-6 flex w-full max-w-2xl items-center justify-between">
+    <div className="mx-auto w-full min-w-0 max-w-7xl px-3 py-6 min-[360px]:px-4 sm:py-12">
+      <div className="mx-auto mb-5 flex w-full max-w-2xl items-center justify-between gap-3 sm:mb-6">
         <button
           type="button"
           onClick={() => navigate(-1)}
@@ -65,7 +65,7 @@ export default function NotePage() {
           <button
             type="button"
             onClick={() => setIsEditing(true)}
-            className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl bg-violet-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-violet-500"
+            className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl bg-violet-600 px-3.5 py-2.5 text-sm font-semibold text-white transition hover:bg-violet-500 sm:px-4"
           >
             <Pencil size={16} />
             Edit note
@@ -73,7 +73,7 @@ export default function NotePage() {
         )}
       </div>
 
-      <div className="flex justify-center">
+      <div className="flex w-full min-w-0 justify-center">
         <NoteForm
           note={note}
           isEditing={isEditing}

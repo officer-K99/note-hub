@@ -9,9 +9,9 @@ const Error = ({ message }: NotesErrorProps) => {
     <div className="flex min-h-[320px] items-center justify-center">
       <div
         role="alert"
-        className="flex min-h-44 w-full max-w-lg items-start gap-5 rounded-2xl border border-red-400/15 bg-[#111827] p-8"
+        className="flex min-h-44 w-full max-w-lg items-start gap-4 rounded-2xl border border-red-400/15 bg-[#111827] p-5 sm:gap-5 sm:p-8"
       >
-        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-red-500/10 text-red-400">
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-red-500/10 text-red-400 sm:h-14 sm:w-14">
           <AlertCircle size={27} />
         </div>
 

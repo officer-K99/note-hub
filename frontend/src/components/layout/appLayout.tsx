@@ -5,7 +5,7 @@ const AppLayout = () => {
   return (
     <>
       <Header />
-      <main className="min-h-[calc(100vh-68px)] bg-[#070b1a]">
+      <main className="min-h-[calc(100vh-68px)] w-full min-w-0 bg-[#070b1a]">
         <Outlet />
       </main>
     </>

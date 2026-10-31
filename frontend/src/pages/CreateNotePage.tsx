@@ -24,7 +24,7 @@ const CreateNotePage = () => {
   };
 
   return (
-    <div className="mx-auto flex max-w-7xl justify-center">
+    <div className="mx-auto flex w-full min-w-0 max-w-7xl justify-center px-3 py-6 min-[360px]:px-4 sm:px-6 sm:py-10">
       <CreateNoteForm onSubmit={handleCreateNote} />
     </div>
   );

@@ -11,8 +11,11 @@ const NoteCard = ({
   onDelete: (id: string) => void;
 }) => {
   return (
-    <article className="group flex h-64 flex-col rounded-2xl border border-white/[0.08] bg-[#111827] p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-violet-500/30 hover:bg-[#151d30]">
-      <Link to={`/notes/${data._id}`} className="flex min-h-0 flex-1 flex-col">
+    <article className="group flex h-64 min-w-0 flex-col rounded-2xl border border-white/[0.08] bg-[#111827] p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-violet-500/30 hover:bg-[#151d30] sm:p-5">
+      <Link
+        to={`/notes/${data._id}`}
+        className="flex min-h-0 min-w-0 flex-1 flex-col"
+      >
         <div className="flex shrink-0 items-start gap-3">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-violet-400/10 bg-violet-500/10 text-violet-400">
             <FileText size={19} strokeWidth={1.8} />
@@ -26,8 +29,8 @@ const NoteCard = ({
           </div>
         </div>
 
-        <div className="relative mt-5 min-h-0 flex-1 overflow-hidden">
-          <p className="whitespace-pre-wrap break-words text-sm leading-6 text-slate-400">
+        <div className="relative mt-4 min-h-0 min-w-0 flex-1 overflow-hidden sm:mt-5">
+          <p className="whitespace-pre-wrap break-words text-sm leading-6 text-slate-400 [overflow-wrap:anywhere]">
             {data.content}
           </p>
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-linear-to-t from-[#111827] to-transparent transition-colors group-hover:from-[#151d30]" />
@@ -43,7 +46,7 @@ const NoteCard = ({
           type="button"
           aria-label="Delete note"
           onClick={() => onDelete(data._id)}
-          className="cursor-pointer rounded-md p-1 text-red-500/70 transition-colors hover:text-red-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400"
+          className="cursor-pointer rounded-md p-1.5 text-red-500/70 transition-colors hover:text-red-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400"
         >
           <Trash2 size={19} strokeWidth={1.8} />
         </button>

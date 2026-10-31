@@ -79,14 +79,14 @@ const UpdateNoteForm = ({
   return (
     <form
       onSubmit={handleSubmit(updateNoteHandler)}
-      className="w-full max-w-2xl space-y-6 rounded-2xl border border-white/[0.08] bg-[#111827] p-6 sm:p-8"
+      className="w-full max-w-2xl space-y-5 rounded-2xl border border-white/[0.08] bg-[#111827] p-4 min-[400px]:p-6 sm:space-y-6 sm:p-8"
     >
       <div>
-        <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-violet-500/10 text-violet-400">
+        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-violet-500/10 text-violet-400 sm:mb-5">
           <FileText size={23} />
         </div>
 
-        <h1 className="text-2xl font-bold tracking-tight text-white">
+        <h1 className="text-xl font-bold tracking-tight text-white min-[400px]:text-2xl">
           {isEditing ? "Edit note" : "Note details"}
         </h1>
 
@@ -110,7 +110,7 @@ const UpdateNoteForm = ({
           disabled={!isEditing || mutation.isPending}
           aria-invalid={!!errors.title}
           aria-describedby={errors.title ? "title-error" : undefined}
-          className="w-full rounded-xl border border-white/10 bg-[#070b1a] px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-violet-500/60 focus:ring-2 focus:ring-violet-500/10 disabled:cursor-not-allowed disabled:opacity-70"
+          className="w-full rounded-xl border border-white/10 bg-[#070b1a] px-3 py-2.5 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-violet-500/60 focus:ring-2 focus:ring-violet-500/10 disabled:cursor-not-allowed disabled:opacity-70 sm:px-4 sm:py-3"
         />
 
         {errors.title && (
@@ -134,7 +134,7 @@ const UpdateNoteForm = ({
           disabled={!isEditing || mutation.isPending}
           aria-invalid={!!errors.content}
           aria-describedby={errors.content ? "content-error" : undefined}
-          className="w-full resize-y rounded-xl border border-white/10 bg-[#070b1a] px-4 py-3 text-sm leading-6 text-white outline-none transition placeholder:text-slate-600 focus:border-violet-500/60 focus:ring-2 focus:ring-violet-500/10 disabled:cursor-not-allowed disabled:opacity-70"
+          className="w-full resize-y rounded-xl border border-white/10 bg-[#070b1a] px-3 py-2.5 text-sm leading-6 text-white outline-none transition placeholder:text-slate-600 focus:border-violet-500/60 focus:ring-2 focus:ring-violet-500/10 disabled:cursor-not-allowed disabled:opacity-70 sm:px-4 sm:py-3"
         />
 
         {errors.content && (
@@ -150,14 +150,14 @@ const UpdateNoteForm = ({
         </p>
       )}
 
-      <div className="flex flex-wrap justify-end gap-3">
+      <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
         {isEditing ? (
           <>
             <button
               type="button"
               onClick={handleCancel}
               disabled={mutation.isPending}
-              className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm font-semibold text-slate-300 transition hover:bg-white/5 disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm font-semibold text-slate-300 transition hover:bg-white/5 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
             >
               <X size={18} />
               Cancel
@@ -166,7 +166,7 @@ const UpdateNoteForm = ({
             <button
               type="submit"
               disabled={!isDirty || mutation.isPending}
-              className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl bg-violet-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-violet-500 disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-violet-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-violet-500 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
             >
               <Save size={18} />
               {mutation.isPending ? "Updating note..." : "Update note"}

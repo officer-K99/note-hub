@@ -29,14 +29,14 @@ const CreateNoteForm = ({ onSubmit }: CreateNoteFormProps) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-full max-w-2xl mt-2.5 space-y-6 rounded-2xl border border-white/[0.08] bg-[#111827] p-6 sm:p-8"
+      className="w-full max-w-2xl space-y-5 rounded-2xl border border-white/[0.08] bg-[#111827] p-4 min-[400px]:p-6 sm:space-y-6 sm:p-8"
     >
       <div>
-        <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-violet-500/10 text-violet-400">
+        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-violet-500/10 text-violet-400 sm:mb-5">
           <FileText size={23} />
         </div>
 
-        <h1 className="text-2xl font-bold tracking-tight text-white">
+        <h1 className="text-xl font-bold tracking-tight text-white min-[400px]:text-2xl">
           Create a new note
         </h1>
 
@@ -57,7 +57,7 @@ const CreateNoteForm = ({ onSubmit }: CreateNoteFormProps) => {
           maxLength={100}
           aria-invalid={!!errors.title}
           aria-describedby={errors.title ? "title-error" : undefined}
-          className="w-full rounded-xl border border-white/10 bg-[#070b1a] px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-violet-500/60 focus:ring-2 focus:ring-violet-500/10"
+          className="w-full rounded-xl border border-white/10 bg-[#070b1a] px-3 py-2.5 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-violet-500/60 focus:ring-2 focus:ring-violet-500/10 sm:px-4 sm:py-3"
         />
 
         {errors.title && (
@@ -80,7 +80,7 @@ const CreateNoteForm = ({ onSubmit }: CreateNoteFormProps) => {
           maxLength={5000}
           aria-invalid={!!errors.content}
           aria-describedby={errors.content ? "content-error" : undefined}
-          className="w-full resize-y rounded-xl border border-white/10 bg-[#070b1a] px-4 py-3 text-sm leading-6 text-white outline-none transition placeholder:text-slate-600 focus:border-violet-500/60 focus:ring-2 focus:ring-violet-500/10"
+          className="w-full resize-y rounded-xl border border-white/10 bg-[#070b1a] px-3 py-2.5 text-sm leading-6 text-white outline-none transition placeholder:text-slate-600 focus:border-violet-500/60 focus:ring-2 focus:ring-violet-500/10 sm:px-4 sm:py-3"
         />
 
         {errors.content && (
@@ -93,7 +93,7 @@ const CreateNoteForm = ({ onSubmit }: CreateNoteFormProps) => {
       <button
         type="submit"
         disabled={isSubmitting || isFormEmpty}
-        className={`inline-flex items-center cursor-pointer justify-center gap-2 rounded-xl ${isSubmitting || isFormEmpty ? "bg-gray-500/30" : "bg-violet-600"} px-5 py-3 text-sm font-semibold text-white transition  disabled:cursor-not-allowed `}
+        className={`inline-flex w-full items-center cursor-pointer justify-center gap-2 rounded-xl ${isSubmitting || isFormEmpty ? "bg-gray-500/30" : "bg-violet-600"} px-5 py-3 text-sm font-semibold text-white transition disabled:cursor-not-allowed sm:w-auto`}
       >
         <Plus size={18} />
         {isSubmitting ? "Creating note..." : "Create note"}

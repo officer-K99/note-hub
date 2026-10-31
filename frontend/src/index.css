@@ -26,3 +26,22 @@ body {
   min-height: 100vh;
   margin: 0;
 }
+
+html,
+body,
+#root {
+  width: 100%;
+  min-width: 0;
+}
+
+body {
+  display: block;
+  margin: 0;
+  overflow-x: clip;
+}
+
+#root {
+  max-width: none;
+  padding: 0;
+  text-align: left;
+}
