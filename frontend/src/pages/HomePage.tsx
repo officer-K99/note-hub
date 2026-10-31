@@ -6,6 +6,7 @@ import { getNotes } from "../api/notes";
 import { FileText } from "lucide-react";
 import deleteNote from "../api/deleteNote";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
 
 const HomePage = () => {
   const {
@@ -28,6 +29,7 @@ const HomePage = () => {
       await queryClient.invalidateQueries({
         queryKey: ["Notes"],
       });
+      toast.success("Note deleted");
     },
   });
 
@@ -57,7 +59,7 @@ const HomePage = () => {
       ) : isError || mutationIsError ? (
         <Error message="Could not fetch notes" />
       ) : notes.length === 0 ? (
-        <div className="flex min-h-48 max-w-md flex-col items-center justify-center rounded-2xl border border-dashed border-white/10 bg-[#111827]/60 px-6 text-center">
+        <div className="mx-auto flex min-h-48 w-full max-w-md flex-col items-center justify-center rounded-2xl border border-dashed border-white/10 bg-[#111827]/60 px-6 text-center">
           <FileText size={26} className="text-slate-500" />
           <h2 className="mt-4 font-semibold text-slate-200">No notes yet</h2>
           <p className="mt-2 text-sm text-slate-500">

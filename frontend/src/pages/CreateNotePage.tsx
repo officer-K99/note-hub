@@ -3,6 +3,7 @@ import type { CreateNoteInput } from "../types/noteSchema";
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 import createNote from "../api/createNote";
 import { useNavigate } from "react-router";
+import { toast } from "sonner";
 
 const CreateNotePage = () => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const CreateNotePage = () => {
       await queryClient.invalidateQueries({
         queryKey: ["Notes"],
       });
+      toast.success("Note Created");
       navigate("/");
     },
   });
