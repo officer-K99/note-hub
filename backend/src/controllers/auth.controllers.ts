@@ -34,7 +34,7 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
     signAccessToken(user.id, user.role),
     accessCookieOptions,
   );
-  res.json({ user: publicUser(user) });
+  res.status(200).json({ user: publicUser(user) });
 });
 
 export const logout = asyncHandler(async (req: Request, res: Response) => {
