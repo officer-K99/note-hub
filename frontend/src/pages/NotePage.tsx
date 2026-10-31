@@ -18,7 +18,6 @@ export default function NotePage() {
     isPending,
     isError,
     error,
-    refetch,
   } = useQuery<NotesType>({
     queryKey: ["notes", id],
     queryFn: () => getNote(id!),
