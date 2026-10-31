@@ -9,6 +9,7 @@ const updateNote = async (
 ): Promise<NotesType> => {
   const response = await fetch(`${API_URL}/api/notes/${id}`, {
     method: "PUT",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },

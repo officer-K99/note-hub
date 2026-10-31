@@ -5,6 +5,7 @@ const API_URL = import.meta.env.VITE_BASE_URL;
 const createNote = async (input: CreateNoteInput): Promise<NotesType> => {
   const response = await fetch(`${API_URL}/api/notes`, {
     method: "POST",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
