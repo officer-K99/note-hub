@@ -6,6 +6,7 @@ import errorHandler from "./middleware/error-handler";
 import notesRouter from "./routes/notes.routes";
 import authRouter from "./routes/auth.routes";
 import { env } from "./configs/env";
+import mongoose from "mongoose";
 
 const app = express();
 
@@ -14,6 +15,22 @@ app.use(helmet());
 app.use(cors({ origin: env.CLIENT_URL, credentials: true }));
 app.use(express.json({ limit: "10kb" }));
 app.use(cookieParser());
+
+let dbReady: Promise<typeof mongoose> | null = null;
+
+app.use(async (_req, _res, next) => {
+  if (mongoose.connection.readyState === 1) return next();
+  try {
+    dbReady ??= mongoose.connect(env.MONGODB_URI!, {
+      serverSelectionTimeoutMS: 8000,
+    });
+    await dbReady;
+    next();
+  } catch (err) {
+    dbReady = null;
+    next(err);
+  }
+});
 
 // routes
 app.use("/api/auth", authRouter);
